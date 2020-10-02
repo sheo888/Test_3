@@ -1,0 +1,134 @@
+﻿<Window x:Class="WpfApp1.Admin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1"
+        mc:Ignorable="d"
+       Title="Admin" Height="570" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Button x:Name="but_exit" Content="Выход" HorizontalAlignment="Right" VerticalAlignment="Top" Width="40" Height="20" Grid.Row="0" Click="but_exit_Click"></Button>
+        <Grid Grid.Row="0">
+            <TabControl>
+                <TabItem>
+                    <TabItem.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <Ellipse Width="10" Height="10" Fill="DarkGray"  Margin="3,3,3,3"/>
+                            <TextBlock>Просмотр данных о материае</TextBlock>
+                        </StackPanel>
+                    </TabItem.Header>
+                    <Grid Grid.Row="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="282*"></ColumnDefinition>
+                            <ColumnDefinition Width="485*"></ColumnDefinition>
+                            <ColumnDefinition Width="19*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="2*"></RowDefinition>
+                                <RowDefinition Height="337*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <StackPanel Grid.Column="0" Grid.Row="1" Orientation="Vertical" HorizontalAlignment="Center" Margin="6,0,5,0" Width="112">
+                                <Label Content="Тип детали" Margin="0,12,0,0"></Label>
+                                <ComboBox x:Name="Combo_Radio_Type" Margin="0,0,0,5">
+                                    <ComboBoxItem IsSelected="True">Резистор</ComboBoxItem>
+                                    <ComboBoxItem>Конденсатор</ComboBoxItem>
+                                    <ComboBoxItem>Диод</ComboBoxItem>
+                                </ComboBox>
+                                <Button x:Name="asd" Click="asd_Click" Margin="0,12,0,0">обнова</Button>
+                                <Button x:Name="select_mid" Click="select__Click" Margin="0,12,0,0">запрос</Button>
+                                <Button x:Name="select_max" Click="select_max_Click" Margin="0,12,0,0">max</Button>
+                                <Button x:Name="select_min" Click="select_min_Click" Margin="0,12,0,0">min</Button>
+                                <Button x:Name="select_len" Click="select_mid_Click" Margin="0,12,0,0">mid</Button>
+                                <Button x:Name="select_avg" Click="select_avg_Click" Margin="0,12,0,0">avg</Button>
+                                <Button x:Name="select_ss" Click="select_sum_Click" Margin="0,12,0,0">sum</Button>
+                            </StackPanel>
+                            <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Vertical" HorizontalAlignment="Center" Margin="24,0" Width="74">
+                                <Label Content="Возраст" Margin="0,20,0,0"></Label>
+                                <TextBox x:Name="w_text" Text="SELECT mid(description_inf,2,3) FROM resistor"></TextBox>
+                            </StackPanel>
+                        </Grid>
+                        <!--<Line X1="0" Y1="1" X2="550" Y2="1" Stroke="Black" StrokeThickness="1"></Line>-->
+                        <DataGrid Grid.Column="1" ItemsSource="{Binding}" x:Name="Spisok_DataGrid" Margin="8" SelectionChanged="Spisok_DataGrid_SelectionChanged" Grid.ColumnSpan="2"></DataGrid>
+                    </Grid>
+                </TabItem>
+                <TabItem>
+                    <TabItem.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <Ellipse Width="10" Height="10" Fill="DarkGray"  Margin="3,3,3,3"/>
+                            <TextBlock>Управления данными о материале</TextBlock>
+                        </StackPanel>
+                    </TabItem.Header>
+                    <Grid Grid.Row="2">
+                        <Grid Grid.ColumnSpan="2"  ShowGridLines="True">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <StackPanel Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <Label Content="Тип"></Label>
+                                <ComboBox x:Name="ComboBox_Type" Margin="0,5,0,0">
+                                    <ComboBoxItem IsSelected="True">Резистор</ComboBoxItem>
+                                    <ComboBoxItem>Конденсатор</ComboBoxItem>
+                                    <ComboBoxItem>Диод</ComboBoxItem>
+                                </ComboBox>
+                            </StackPanel>
+                            <StackPanel Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <Label Content="Количество"></Label>
+                                <TextBox x:Name="Textbox_Quantity" TextAlignment="Center" Margin="0,5,0,0" Text="1"></TextBox>
+                            </StackPanel>
+                            <StackPanel Grid.Row="0" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <Label Content="Сопотивление"></Label>
+                                <TextBox x:Name="Textbox_Resistance" TextAlignment="Center" Margin="0,5,0,0" Text="1"></TextBox>
+                            </StackPanel>
+                            <StackPanel Grid.Row="0" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <Label Content="Точность"></Label>
+                                <ComboBox x:Name="Combobox_Accuracy" Margin="0,5,0,0">
+                                    <ComboBoxItem IsSelected="True">5%</ComboBoxItem>
+                                    <ComboBoxItem>10%</ComboBoxItem>
+                                    <ComboBoxItem>15%</ComboBoxItem>
+                                </ComboBox>
+                            </StackPanel>
+                            <StackPanel Grid.Row="0" Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <Label Content="Мощность"></Label>
+                                <ComboBox x:Name="Combobox_Power_w" Margin="0,5,0,0">
+                                    <ComboBoxItem IsSelected="True">5%</ComboBoxItem>
+                                    <ComboBoxItem>10%</ComboBoxItem>
+                                    <ComboBoxItem>15%</ComboBoxItem>
+                                </ComboBox>
+                            </StackPanel>
+                            <StackPanel Grid.Row="0" Grid.Column="5" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <Label Content="Manufacturer"></Label>
+                                <TextBox x:Name="Texbox_Manufacturer">a</TextBox>
+                            </StackPanel>
+                            <StackPanel Grid.Row="0" Grid.Column="6" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <Label Content="Доп. описание"></Label>
+                                <TextBox x:Name="Texbox_Description_inf">a</TextBox>
+                                <Button Width="30" x:Name="butt_add" Height="12" Margin="0,10,0,0" Content="Добавить" Click="butt_add_Click" ></Button>
+                            </StackPanel>
+                        </Grid>
+                    </Grid>
+                </TabItem>
+            </TabControl>
+        </Grid>
+    </Grid>
+</Window>
+
